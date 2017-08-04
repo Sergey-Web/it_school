@@ -28,4 +28,9 @@ class User extends Authenticatable
     ];
 
     protected $guarded = [];
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role', 'role_user', 'role_id', 'id');
+    }
 }

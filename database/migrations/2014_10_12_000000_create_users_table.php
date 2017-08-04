@@ -20,8 +20,6 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->date('happy_birthday');
             $table->string('phone');
-/*            $table->integer('group_id')->unsigned();
-            $table->foreign('group_id')->references('id')->on('news');*/
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

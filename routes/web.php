@@ -14,3 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/register', function () {
+    return view('welcome');
+});
+
+Route::get('/home', function () {
+    return view('welcome');
+});
+
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('/', 'HomeController@index')->name('admin');
+});
+
