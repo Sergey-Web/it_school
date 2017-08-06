@@ -16,8 +16,9 @@ class UsersSeeder extends Seeder
             'name'           => 'Ivan Ivanovich Ivanov',
             'login'          => 'ivan',
             'email'          => 'ivan@gmail.com',
-            'happy_birthday' => '2000-08-09',
-            'phone'          => serialize('0503333666'),
+            'birthday' => '2000-08-09',
+            'phone'          => serialize('0503333666, 0503333666'),
+            'img'            => 'img.jpg',
             'password'       => bcrypt('ivan')
         ]);
 
@@ -25,8 +26,9 @@ class UsersSeeder extends Seeder
             'name'           => 'Sergey Sergeev Sergeevich',
             'login'          => 'admin',
             'email'          => 'admin@gmail.com',
-            'happy_birthday' => '2000-08-09',
+            'birthday' => '2000-08-09',
             'phone'          => serialize('0670001010, 0679988456'),
+            'img'            => 'img.jpg',
             'password'       => bcrypt('admin')
         ]);
 
@@ -34,8 +36,9 @@ class UsersSeeder extends Seeder
             'name'           => 'Maxsim Maxsimum Maxsimovich',
             'login'          => 'maxsim',
             'email'          => 'maxsim@gmail.com',
-            'happy_birthday' => '2000-08-09',
+            'birthday' => '2000-08-09',
             'phone'          => serialize('0670001010, 0679988456, 0503333666'),
+            'img'            => 'img.jpg',
             'password'       => bcrypt('maxsim')
         ]);
 
@@ -43,8 +46,9 @@ class UsersSeeder extends Seeder
             'name'           => 'Evgeniy Evgenius Evgenievich',
             'login'          => 'evgeniy',
             'email'          => 'evgeniy@gmail.com',
-            'happy_birthday' => '2000-08-09',
+            'birthday' => '2000-08-09',
             'phone'          => serialize('0670001010, 0679988456, 0503333666'),
+            'img'            => 'img.jpg',
             'password'       => bcrypt('evgeniy')
         ]);
     }

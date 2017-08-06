@@ -26,15 +26,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id;
-        $user = User::find($id);
+        $user_obj = User::find(Auth::id());
+        $user = new User;
 
-
-        foreach($user->roles as $role) {
+        foreach($user_obj->roles as $role) {
             if($role->role == 'admin') {
-                return view('admin');
+                $user_arr_date = $user->groupUserDate($user_obj, $role->role);
+                return view('admin', ['user'=>$user_arr_date]);
             } else {
-                return view('student');
+                $user_arr_date =  $user->groupUserDate($user_obj, $role->role);
+                return view('student', ['user'=>$user_arr_date]);
             }
         }
     }

@@ -11,18 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
-Route::get('/register', function () {
-    return view('welcome');
+Route::get('/', function () {
+    return view('welcome', ['news' => \App\News::all()]);
 });
 
 Route::get('/home', function () {
-    return view('welcome');
+    return view('welcome', ['news' => \App\News::all()]);
 });
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {

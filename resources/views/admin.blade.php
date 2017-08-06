@@ -1,17 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    You are logged in!
-                </div>
-            </div>
-        </div>
+    <div class="content">
+        <table class="table user-date">
+            <tbody>
+            @foreach($user as $key_item => $item)
+                @if($key_item == 'img')
+                    <tr>
+                        <th class="user-date__title">{{ $key_item }}:</th>
+                        <td><img src="{{ asset('img/'.$item) }}" alt=""></td>
+                    </tr>
+                @else
+                    <tr>
+                        <th class="user-date__title">{{ $key_item }}:</th>
+                        <td>{{ $item }}</td>
+                    </tr>
+                @endif
+            @endforeach
+            </tbody>
+        </table>
     </div>
-</div>
 @endsection
