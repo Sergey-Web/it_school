@@ -11,14 +11,21 @@ use App\Home;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function index()
     {
+        $arrNews = [];
+        $newsObj = News::with ('user')->get();
+        foreach($newsObj as $keyNewsObj => $valNewsObj) {
+            $arrNews[] = [
+                'title'      => $valNewsObj->title,
+                'img'        => $valNewsObj->img,
+                'content'    => $valNewsObj->content,
+                'author'     => $valNewsObj->user->name,
+                'dateCreate' => $valNewsObj->created_at
+            ];
+        }
 
+        return view('welcome', ['news' => $arrNews, 'admin' => User::checkAdmin()]);
     }
 
     /**
@@ -26,7 +33,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function admin()
     {
         $user_obj = User::find(Auth::id());
         $user = new User;

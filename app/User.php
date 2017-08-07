@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -39,6 +40,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Group', 'group_user', 'user_id', 'group_id');
     }
 
+    public function news()
+    {
+        return $this->hasMany('App\News');
+    }
+
     public function groupUserDate($user_obj, $role)
     {
         foreach($user_obj->groups as $group_val) {
@@ -65,6 +71,22 @@ class User extends Authenticatable
         }
 
         return $user_arr_date;
+    }
+
+    public static function checkAdmin()
+    {
+        $user_obj = User::find(Auth::id());
+
+        if($user_obj != null) {
+
+            foreach ($user_obj->roles as $role) {
+                if ($role->role == 'admin') {
+                    return TRUE;
+                } else {
+                    return FALSE;
+                }
+            }
+        }
     }
 
 }

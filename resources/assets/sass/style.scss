@@ -66,11 +66,25 @@ html, body {
     &__content {
       display: flex;
       flex-direction: row;
+      margin:0;
     }
     &__text {
       margin-left: 15px;
       overflow-x: hidden;
     }
+    &__author {
+      text-align: right;
+    }
+    &__date {
+      text-align: right;
+    }
+    &__control-buttons {
+      display: flex;
+    }
+}
+
+.glyphicon.glyphicon-remove-sign {
+  color: red;
 }
 
 .form-news {

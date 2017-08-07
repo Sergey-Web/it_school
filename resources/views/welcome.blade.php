@@ -36,6 +36,7 @@
                 </div>
             @endif
 
+
             <div class="content">
                 <div class="title m-b-md">
                     News
@@ -43,14 +44,25 @@
                 <div class="wrap-news">
                     @foreach($news as $key_news => $val_news)
                     <section class="news">
-                        <h3 class="news__title">{{ $val_news->title }}</h3>
+                        <h3 class="news__title">{{ $val_news['title'] }}</h3>
                         <div class="news__content well">
-                            @if(!empty($val_news->img))
-                                <img src="{{ asset('storage/img/'.$val_news->img) }}" alt="">
+                        @if(!empty($val_news['img']))
+                                <img src="{{ asset('storage/img/'.$val_news['img']) }}" alt="">
                             @endif
-                            <p class="news__text">{{ $val_news->content }}</p>
+                            <p class="news__text">{{ $val_news['content'] }}</p>
                         </div>
-                        <span class="news__author"></span>
+                        @if($admin)
+                            <div class="new__control-buttons">
+                                <a class="news__delete" href="" >
+                                    <span class="glyphicon glyphicon-edit" title="edit"></span>
+                                </a>
+                                <a class="news__edit" href="">
+                                    <span class="glyphicon glyphicon-remove-sign" title="delete"></span>
+                                </a>
+                            </div>
+                        @endif
+                        <span class="news__author">{{ $val_news['author'] }}</span>
+                        <span class="news__date">{{ date('Y-m-d' ,strtotime($val_news['dateCreate'])) }}</span>
                     </section>
                     @endforeach
                 </div>

@@ -14,16 +14,11 @@
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome', ['news' => \App\News::all()]);
-})->name('home');
-
-Route::get('/home', function () {
-    return view('welcome', ['news' => \App\News::all()]);
-});
+Route::get('/', ['uses' => 'HomeController@index'])->name('home');
+Route::get('/home', ['uses' => 'HomeController@index'])->name('home');
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {
-    Route::get('/', 'HomeController@index')->name('admin');
+    Route::get('/', 'HomeController@admin')->name('admin');
 });
 
 Route::post('/', 'HomeController@update')->middleware(['auth'])->name('add_news');

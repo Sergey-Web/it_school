@@ -85,11 +85,30 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  margin: 0;
 }
 
 .news__text {
   margin-left: 15px;
   overflow-x: hidden;
+}
+
+.news__author {
+  text-align: right;
+}
+
+.news__date {
+  text-align: right;
+}
+
+.news__control-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.glyphicon.glyphicon-remove-sign {
+  color: red;
 }
 
 .form-news {
