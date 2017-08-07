@@ -2,7 +2,7 @@ html, body {
   background-color: #fff;
   color: #636b6f;
   font-family: 'Raleway', sans-serif;
-  font-weight: 100;
+  font-weight: 300;
   height: 100vh;
   margin: 0;
 }
@@ -70,4 +70,9 @@ html, body {
     &__text {
       margin-left: 15px;
     }
+}
+
+.form-news {
+  width: 600px;
+  margin: 0 auto;
 }

@@ -21,6 +21,7 @@
                 <div class="top-right links">
                     @if (Auth::check())
                         <a href="{{ url('/admin') }}">Admin</a>
+                        <a href="{{ route('logout') }}">Logout</a>
                     @else
                         <a href="{{ url('/login') }}">Login</a>
                     @endif
@@ -46,6 +47,34 @@
                     </section>
                     @endforeach
                 </div>
+
+                @if (Auth::check())
+                <form class="form-news form-horizontal" enctype="multipart/form-data" method="POST">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <label for="inputTitle" class="col-sm-2 control-label">Title</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputTitle" placeholder="Title">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputContent" class="col-sm-2 control-label">Content</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputContent" placeholder="Content">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputFile">Add image</label>
+                        <input type="file" id="inputFile">
+                        <p class="help-block">Example block-level help text here.</p>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Sign in</button>
+                        </div>
+                    </div>
+                </form>
+                @endif
             </div>
         </div>
     </body>
