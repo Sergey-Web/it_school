@@ -16,7 +16,7 @@ Auth::routes();
 
 Route::get('/', function () {
     return view('welcome', ['news' => \App\News::all()]);
-});
+})->name('home');
 
 Route::get('/home', function () {
     return view('welcome', ['news' => \App\News::all()]);
@@ -25,4 +25,6 @@ Route::get('/home', function () {
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/', 'HomeController@index')->name('admin');
 });
+
+Route::post('/', 'HomeController@update')->middleware(['auth'])->name('add_news');
 

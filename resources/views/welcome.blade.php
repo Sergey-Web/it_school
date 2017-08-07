@@ -21,7 +21,15 @@
                 <div class="top-right links">
                     @if (Auth::check())
                         <a href="{{ url('/admin') }}">Admin</a>
-                        <a href="{{ route('logout') }}">Logout</a>
+                        <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     @else
                         <a href="{{ url('/login') }}">Login</a>
                     @endif
@@ -32,14 +40,13 @@
                 <div class="title m-b-md">
                     News
                 </div>
-
                 <div class="wrap-news">
                     @foreach($news as $key_news => $val_news)
                     <section class="news">
                         <h3 class="news__title">{{ $val_news->title }}</h3>
                         <div class="news__content well">
                             @if(!empty($val_news->img))
-                                <img src="{{ asset('img/'.$val_news->img) }}" alt="">
+                                <img src="{{ asset('storage/img/'.$val_news->img) }}" alt="">
                             @endif
                             <p class="news__text">{{ $val_news->content }}</p>
                         </div>
@@ -49,23 +56,35 @@
                 </div>
 
                 @if (Auth::check())
-                <form class="form-news form-horizontal" enctype="multipart/form-data" method="POST">
+
+                <form class="form-news form-horizontal" enctype="multipart/form-data" method="POST"
+                      action="{{ route('add_news') }}">
+                    @if(count($errors) > 0)
+                        <ul class="alert alert-danger">
+                        @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                        </ul>
+                    @endif
+
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="inputTitle" class="col-sm-2 control-label">Title</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputTitle" placeholder="Title">
+                            <input type="text" class="form-control" id="inputTitle" placeholder="Title" name="title"
+                                   value="{{ old('title') }}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputContent" class="col-sm-2 control-label">Content</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputContent" placeholder="Content">
+                            <textarea class="form-control" name="content" id="inputContent" cols="30"
+                                      rows="10" placeholder="Content">{{ old('content') }}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputFile">Add image</label>
-                        <input type="file" id="inputFile">
+                        <input type="file" id="inputFile" name="img">
                         <p class="help-block">Example block-level help text here.</p>
                     </div>
                     <div class="form-group">

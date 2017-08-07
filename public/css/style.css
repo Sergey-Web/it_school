@@ -89,6 +89,7 @@ body {
 
 .news__text {
   margin-left: 15px;
+  overflow-x: hidden;
 }
 
 .form-news {
