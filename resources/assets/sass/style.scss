@@ -102,3 +102,22 @@ html, body {
   }
 }
 
+.table-users {
+  width: 500px;
+  margin:0 auto;
+}
+
+.table-users {
+  &__row {
+    cursor: pointer;
+  }
+  &__item {
+    vertical-align: middle !important;
+  }
+  &__icon-del {
+    &:hover {
+      text-decoration: none;
+      color: red;
+    }
+  }
+}

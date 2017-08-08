@@ -36,12 +36,13 @@ class HomeController extends Controller
     public function admin()
     {
         $user_obj = User::find(Auth::id());
+        $users = User::listUsers();
         $user = new User;
 
         foreach ($user_obj->roles as $role) {
             if ($role->role == 'admin') {
                 $user_arr_date = $user->groupUserDate($user_obj, $role->role);
-                return view('admin', ['user' => $user_arr_date]);
+                return view('admin', ['user' => $user_arr_date, 'users' => $users]);
             } else {
                 $user_arr_date = $user->groupUserDate($user_obj, $role->role);
                 return view('student', ['user' => $user_arr_date]);

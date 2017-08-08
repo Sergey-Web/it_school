@@ -75,11 +75,11 @@ class User extends Authenticatable
 
     public static function checkAdmin()
     {
-        $user_obj = User::find(Auth::id());
+        $userObj = User::find(Auth::id());
 
-        if($user_obj != null) {
+        if($userObj != null) {
 
-            foreach ($user_obj->roles as $role) {
+            foreach ($userObj->roles as $role) {
                 if ($role->role == 'admin') {
                     return TRUE;
                 } else {
@@ -87,6 +87,42 @@ class User extends Authenticatable
                 }
             }
         }
+    }
+
+    public static function listUsers()
+    {
+        $usersObj = User::with('Groups')->get();
+
+        foreach($usersObj as $key_user => $user) {
+            $nameExplode = explode(' ', $user->name);
+
+            if(count($nameExplode) == 3) {
+                foreach($user->groups->all() as $group) {
+                    $userGroup = $group->group;
+                }
+                $users[] = [
+                    'id'         => $user['id'],
+                    'firstName'  => $nameExplode[0],
+                    'lastName'   => $nameExplode[1],
+                    'patronymic' => $nameExplode[2],
+                    'userGroup'  => $userGroup
+                ];
+            } else {
+                foreach($user->groups->all() as $group) {
+                    $userGroup = $group->group;
+                }
+                $users[] = [
+                    'id'         => $user['id'],
+                    'firstName'  => $nameExplode[0],
+                    'lastName'   => $nameExplode[1],
+                    'userGroup'  => $userGroup
+                ];
+            }
+
+
+        }
+
+        return $users;
     }
 
 }

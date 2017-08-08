@@ -124,3 +124,21 @@ body {
   margin-right: 5px;
 }
 
+.table-users {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.table-users__row {
+  cursor: pointer;
+}
+
+.table-users__item {
+  vertical-align: middle !important;
+}
+
+.table-users__icon-del:hover {
+  text-decoration: none;
+  color: red;
+}
+
