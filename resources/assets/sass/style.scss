@@ -92,3 +92,13 @@ html, body {
   margin: 0 auto;
 }
 
+.form-edit-news {
+  padding: 14px;
+}
+
+.modal-delete {
+  &__icn-remove {
+    margin-right: 5px;
+  }
+}
+

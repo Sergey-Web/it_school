@@ -21,5 +21,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/', 'HomeController@admin')->name('admin');
 });
 
-Route::post('/', 'HomeController@update')->middleware(['auth'])->name('add_news');
+Route::post('/add-news', 'HomeController@update')->middleware(['auth'])->name('add-news');
+Route::post('/delete-news', 'HomeController@deleteNews')->middleware(['auth','checkAdmin'])->name('delete-news');
+Route::post('/edit-news', 'HomeController@deleteNews')->middleware(['auth','checkAdmin'])->name('edit-news');
 

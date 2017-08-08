@@ -68,4 +68,14 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
+    public function deleteNews()
+    {
+        echo 'delete news';
+    }
+
+    public function editNews()
+    {
+        echo 'edit news';
+    }
+
 }

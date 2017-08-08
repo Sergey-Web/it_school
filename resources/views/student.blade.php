@@ -8,7 +8,7 @@
                 @if($key_item == 'img')
                 <tr>
                     <th class="user-date__title">{{ $key_item }}:</th>
-                    <td><img src="{{ asset('img/'.$item) }}" alt=""></td>
+                    <td><img src="{{ asset('storage/img/'.$item) }}" alt=""></td>
                 </tr>
                 @else
                 <tr>
