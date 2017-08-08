@@ -52,13 +52,23 @@
                         </div>
 
                         @if($admin)
-                            @include('buttons-admin')
+                            <div class="new__control-buttons">
+                                <a class="news__edit" href="#" data-toggle="modal" data-id="{{ $val_news['id'] }}" data-target="#modalEdit">
+                                    <span class="glyphicon glyphicon-edit" title="edit"></span>
+                                </a>
+                                <a class="news__delete" href="#" data-toggle="modal" data-id="{{ $val_news['id'] }}"
+                                   data-target="#modalDelete">
+                                    <span class="glyphicon glyphicon-remove-sign" title="delete" data-toggle="modal"
+                                        data-target=".bs-example-modal-lg"></span>
+                                </a>
+                            </div>
                         @endif
 
                         <span class="news__author">{{ $val_news['author'] }}</span>
                         <span class="news__date">{{ date('Y-m-d' ,strtotime($val_news['dateCreate'])) }}</span>
                     </section>
                     @endforeach
+                    @include('modal-news')
                 </div>
 
                 @if (Auth::check())
@@ -70,5 +80,7 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+        <script src="{{ asset('js/main.js') }}"></script>
     </body>
 </html>

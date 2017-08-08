@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-use App\Role;
 use App\News;
 use App\Home;
 
@@ -17,6 +16,7 @@ class HomeController extends Controller
         $newsObj = News::with ('user')->get();
         foreach($newsObj as $keyNewsObj => $valNewsObj) {
             $arrNews[] = [
+                'id'         => $valNewsObj->id,
                 'title'      => $valNewsObj->title,
                 'img'        => $valNewsObj->img,
                 'content'    => $valNewsObj->content,
@@ -70,12 +70,25 @@ class HomeController extends Controller
 
     public function deleteNews()
     {
-        echo 'delete news';
+        $newsId = request()->all()['newsDeleleId'];
+        News::destroy($newsId);
+
+        return redirect()->back();
     }
 
     public function editNews()
     {
-        echo 'edit news';
+        $newsIdEdit = request()->all()['newsEditId'];
+        $newsTitle = request()->all()['newsTitle'];
+        $newsContent = request()->all()['newsContent'];
+
+        $news = News::find($newsIdEdit);
+        $news->title = $newsTitle;
+        $news->content = $newsContent;
+
+        $news->save();
+
+        return redirect()->back();
     }
 
 }
